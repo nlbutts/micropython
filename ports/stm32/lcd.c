@@ -210,12 +210,6 @@ static mp_obj_t pyb_lcd_make_new(const mp_obj_type_t *type, size_t n_args, size_
         lcd->pin_rst = pyb_pin_X4;
         lcd->pin_a0 = pyb_pin_X5;
         lcd->pin_bl = pyb_pin_X12;
-    } else if ((lcd_id[0] | 0x20) == 'y' && lcd_id[1] == '\0') {
-        lcd->spi = &spi_obj[1];
-        lcd->pin_cs1 = pyb_pin_Y3;
-        lcd->pin_rst = pyb_pin_Y4;
-        lcd->pin_a0 = pyb_pin_Y5;
-        lcd->pin_bl = pyb_pin_Y12;
     } else {
         mp_raise_msg_varg(&mp_type_ValueError, MP_ERROR_TEXT("LCD(%s) doesn't exist"), lcd_id);
     }
