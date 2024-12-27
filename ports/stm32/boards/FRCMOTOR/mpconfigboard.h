@@ -1,11 +1,11 @@
 #define MICROPY_HW_BOARD_NAME       "FRCMotorTester"
-#define MICROPY_HW_MCU_NAME         "STM32F405RG"
+#define MICROPY_HW_MCU_NAME         "STM32F446RE"
 
 #define MICROPY_HW_HAS_SWITCH       (1)
 #define MICROPY_HW_HAS_FLASH        (1)
 #define MICROPY_HW_HAS_MMA7660      (0)
 #define MICROPY_HW_HAS_LCD          (1)
-#define MICROPY_HW_ENABLE_RNG       (1)
+#define MICROPY_HW_ENABLE_RNG       (0)
 #define MICROPY_HW_ENABLE_RTC       (1)
 #define MICROPY_HW_ENABLE_SERVO     (0)
 #define MICROPY_HW_ENABLE_DAC       (0)

@@ -280,7 +280,7 @@ static mp_obj_t pyb_lcd_make_new(const mp_obj_type_t *type, size_t n_args, size_
     mp_hal_pin_high(lcd->pin_rst); // RST=1; enable
     mp_hal_delay_ms(1); // wait for reset; 2us min
     lcd_out(lcd, LCD_INSTR, 0xa0); // ADC select, normal
-    lcd_out(lcd, LCD_INSTR, 0xc0); // common output mode select, normal (this flips the display)
+    lcd_out(lcd, LCD_INSTR, 0xc8); // common output mode select, normal (this flips the display)
     lcd_out(lcd, LCD_INSTR, 0xa2); // LCD bias set, 1/9 bias
     lcd_out(lcd, LCD_INSTR, 0x2f); // power control set, 0b111=(booster on, vreg on, vfollow on)
     lcd_out(lcd, LCD_INSTR, 0x21); // v0 voltage regulator internal resistor ratio set, 0b001=small
@@ -497,7 +497,8 @@ static mp_obj_t pyb_lcd_show(mp_obj_t self_in) {
         lcd_out(self, LCD_INSTR, 0x10); // column address set upper; 0
         lcd_out(self, LCD_INSTR, 0x00); // column address set lower; 0
         for (uint i = 0; i < 128; i++) {
-            lcd_out(self, LCD_DATA, self->pix_buf[128 * page + 127 - i]);
+            // The LCD is inverted, so invert the data before we write it
+            lcd_out(self, LCD_DATA, self->pix_buf[128 * page + i]);
         }
     }
     return mp_const_none;
